@@ -16,10 +16,11 @@ class CreateIngredientsTable extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
             $table->integer('ingredient_id');
-            $table->string('description');
+            $table->string('ingredient_name');
             $table->string('unit');
             $table->float('netto_price');
             $table->double('stock');
+            $table->integer('supplier_id');
             $table->double('calories');
             $table->double('carbonhydrates');
             $table->double('protein');

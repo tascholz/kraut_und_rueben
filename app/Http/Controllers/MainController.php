@@ -12,15 +12,8 @@ class MainController extends Controller
         return view('index');
     }
 
-    public function ingredients()
+    public function showRecipes()
     {
-        return view('ingredients');
-    }
-
-    public function showCustomers()
-    {
-        $customers = Customer::all();
-
-        return view('customers', ['customers' => $customers]);
+        
     }
 }
