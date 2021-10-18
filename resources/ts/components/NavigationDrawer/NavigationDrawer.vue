@@ -13,7 +13,7 @@
       fixed
       @click.stop="toggleNav"
     >
-      <v-icon>{{ isOpen ? "mdi-close" : "mdi-menu" }}</v-icon>
+      <v-icon>{{ isOpen ? 'mdi-close' : 'mdi-menu' }}</v-icon>
     </v-btn>
     <v-navigation-drawer
       :temporary="$vuetify.breakpoint.smAndDown"
@@ -27,9 +27,9 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title
-            class="text-h4 font-weight-medium float-right mx-auto text-center"
+            class="text-h5 my-2 font-weight-medium float-right mx-auto text-center"
           >
-            Arqu
+            K&R
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -55,13 +55,18 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api'
-import { useNavigationDrawer } from './NavigationDrawer';
+import { useNavigationDrawer } from './NavigationDrawer'
 
 export default defineComponent({
-  name: "navigation-drawer",
+  name: 'navigation-drawer',
   setup(props, context) {
-    const { test } = useNavigationDrawer(context);
-    console.log(test);
-  },
+    const { items, isOpen, toggleNav } = useNavigationDrawer(context)
+
+    return {
+      items,
+      isOpen,
+      toggleNav
+    }
+  }
 })
 </script>

@@ -1,6 +1,9 @@
 <!-- Navigation Menu -->
 <div id="app">
-    <navigation-drawer></navigation-drawer>
+    <v-app>
+        <navigation-drawer></navigation-drawer>
+        
+    </v-app>
 </div>
 <div>
     @yield('content')

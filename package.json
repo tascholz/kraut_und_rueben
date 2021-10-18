@@ -15,7 +15,7 @@
         "deepmerge": "^4.2.2",
         "jquery": "^3.6",
         "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
+        "lodash": "^4.17.21",
         "popper.js": "^1.16.1",
         "postcss": "^8.1.14",
         "resolve-url-loader": "^3.1.2",
@@ -28,7 +28,9 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@mdi/font": "^6.3.95",
         "@vue/composition-api": "^1.2.4",
+        "material-design-icons-iconfont": "^6.1.0",
         "vuetify": "^2.5.10"
     }
 }
