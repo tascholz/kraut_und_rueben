@@ -13,7 +13,7 @@ class IngredientRecipe extends Migration
      */
     public function up()
     {
-        Schema::table('ingredient_recipe', function (Blueprint $table) {
+        Schema::create('ingredient_recipe', function (Blueprint $table) {
             $table->id();
             $table->integer('ingredien_id');
             $table->integer('recipe_id');

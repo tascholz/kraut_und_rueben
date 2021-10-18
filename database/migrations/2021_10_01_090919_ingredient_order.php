@@ -13,7 +13,7 @@ class IngredientOrder extends Migration
      */
     public function up()
     {
-        Schema::table('ingredient_order', function (Blueprint $table) {
+        Schema::create('ingredient_order', function (Blueprint $table) {
             $table->id();
             $table->integer('ingredient_id');
             $table->integer('order_id');

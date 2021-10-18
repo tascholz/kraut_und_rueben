@@ -1,6 +1,9 @@
 <!-- Navigation Menu -->
-<a href='/ingredients'>Zutaten</a>
-<a href='/customers'>Kunden</a>
+<div id="app">
+    <navigation-drawer></navigation-drawer>
+</div>
 <div>
     @yield('content')
 </div>
+
+<script src="{{asset('js/app.js')}}"></script>
