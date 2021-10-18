@@ -23,12 +23,13 @@ import vuetify from './vuetify'
 
 Vue.component(
   'example-component',
-  require('./components/ExampleComponent.vue').default
+  require('./vue/components/ExampleComponent.vue').default
 )
 Vue.component(
   'navigation-drawer',
-  require('./components/NavigationDrawer/NavigationDrawer.vue').default
+  require('./vue/components/NavigationDrawer/NavigationDrawer.vue').default
 )
+Vue.component('view-home', require('./vue/views/Home/Home.vue')).default
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -38,5 +39,5 @@ Vue.component(
 
 const app = new Vue({
   el: '#app',
-  vuetify
+  vuetify,
 })

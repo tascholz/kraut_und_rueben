@@ -29,23 +29,27 @@
           <v-list-item-title
             class="text-h5 my-2 font-weight-medium float-right mx-auto text-center"
           >
-            K&R
+            .
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
       <v-divider dark></v-divider>
-      <v-list :dense="$vuetify.breakpoint.mdAndUp" nav>
+      <v-list :dense="$vuetify.breakpoint.smAndDown" nav>
         <v-list-item
           v-for="item in items"
           :key="item.name"
-          :to="item.routerPath"
+          :to="item.link"
           link
         >
           <v-list-item-icon>
             <v-icon color="primary">{{ item.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>{{ item.name }}</v-list-item-title>
+            <v-list-item-title
+              class="text-subtitle"
+              :class="{ 'font-weight-medium': $vuetify.breakpoint.smAndUp }"
+              >{{ item.name }}</v-list-item-title
+            >
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -65,8 +69,8 @@ export default defineComponent({
     return {
       items,
       isOpen,
-      toggleNav
+      toggleNav,
     }
-  }
+  },
 })
 </script>
