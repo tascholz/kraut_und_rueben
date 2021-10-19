@@ -20,10 +20,10 @@ class IngredientSeeder extends Seeder
             'ingredient_name' => 'Zucchini',
             'unit' => 'Stück',
             'netto_price' => 0.89,
-            'stock' = 100,
-            'supplier_id' = 101,
-            'calories' = 19,
-            'carbonhydrates' = 2,
+            'stock' => 100,
+            'supplier_id' => 101,
+            'calories' => 19,
+            'carbonhydrates' => 2,
             'protein' => 1.6
         ]);
 
@@ -32,10 +32,10 @@ class IngredientSeeder extends Seeder
             'ingredient_name' => 'Zwiebel',
             'unit' => 'Stück',
             'netto_price' => 0.15,
-            'stock' = 50,
-            'supplier_id' = 101,
-            'calories' = 28,
-            'carbonhydrates' = 4.9,
+            'stock' => 50,
+            'supplier_id' => 101,
+            'calories' => 28,
+            'carbonhydrates' => 4.9,
             'protein' => 1.2
         ]);
 
@@ -44,10 +44,10 @@ class IngredientSeeder extends Seeder
             'ingredient_name' => 'Tomate',
             'unit' => 'Stück',
             'netto_price' => 0.45,
-            'stock' = 50,
-            'supplier_id' = 101,
-            'calories' = 18,
-            'carbonhydrates' = 2.6,
+            'stock' => 50,
+            'supplier_id' => 101,
+            'calories' => 18,
+            'carbonhydrates' => 2.6,
             'protein' => 1
         ]);
 
@@ -56,10 +56,10 @@ class IngredientSeeder extends Seeder
             'ingredient_name' => 'Schalotte',
             'unit' => 'Stück',
             'netto_price' => 0.20,
-            'stock' = 500,
-            'supplier_id' = 101,
-            'calories' = 25,
-            'carbonhydrates' = 3.3,
+            'stock' => 500,
+            'supplier_id' => 101,
+            'calories' => 25,
+            'carbonhydrates' => 3.3,
             'protein' => 1.5
         ]);
 
@@ -68,10 +68,10 @@ class IngredientSeeder extends Seeder
             'ingredient_name' => 'Karotte',
             'unit' => 'Stück',
             'netto_price' => 0.3,
-            'stock' = 500,
-            'supplier_id' = 101,
-            'calories' = 41,
-            'carbonhydrates' = 10,
+            'stock' => 500,
+            'supplier_id' => 101,
+            'calories' => 41,
+            'carbonhydrates' => 10,
             'protein' => 0.9
         ]);
 
@@ -80,10 +80,10 @@ class IngredientSeeder extends Seeder
             'ingredient_name' => 'Kartoffel',
             'unit' => 'Stück',
             'netto_price' => 0.15,
-            'stock' = 1500,
-            'supplier_id' = 101,
-            'calories' = 71,
-            'carbonhydrates' = 14.6,
+            'stock' => 1500,
+            'supplier_id' => 101,
+            'calories' => 71,
+            'carbonhydrates' => 14.6,
             'protein' => 2
         ]);
 
@@ -92,10 +92,10 @@ class IngredientSeeder extends Seeder
             'ingredient_name' => 'Rucola',
             'unit' => 'Bund',
             'netto_price' => 0.90,
-            'stock' = 10,
-            'supplier_id' = 101,
-            'calories' = 27,
-            'carbonhydrates' = 2.1,
+            'stock' => 10,
+            'supplier_id' => 101,
+            'calories' => 27,
+            'carbonhydrates' => 2.1,
             'protein' => 2.6
         ]);
 
@@ -104,10 +104,10 @@ class IngredientSeeder extends Seeder
             'ingredient_name' => 'Lauch',
             'unit' => 'Stück',
             'netto_price' => 0.90,
-            'stock' = 10,
-            'supplier_id' = 101,
-            'calories' = 27,
-            'carbonhydrates' = 2.1,
+            'stock' => 10,
+            'supplier_id' => 101,
+            'calories' => 27,
+            'carbonhydrates' => 2.1,
             'protein' => 2.6
         ]);
     }
