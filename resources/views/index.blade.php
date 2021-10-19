@@ -1,11 +1,5 @@
 @extends('layout.layout')
 
 @section('content')
-
-Hello World
-
+    <view-home />
 @endsection
-
-<script>
-    alert('Test');
-</script>

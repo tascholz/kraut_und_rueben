@@ -13,7 +13,7 @@ class CategoryRecipe extends Migration
      */
     public function up()
     {
-        Schema::table('category_recipe', function (Blueprint $table) {
+        Schema::create('category_recipe', function (Blueprint $table) {
             $table->id();
             $table->integer('category_id');
             $table->integer('recipe_id');
