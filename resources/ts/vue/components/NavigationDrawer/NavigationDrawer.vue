@@ -26,10 +26,8 @@
     >
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title
-            class="text-h5 my-2 font-weight-medium float-right mx-auto text-center"
-          >
-            .
+          <v-list-item-title class="text-h4 mx-auto text-center">
+            A
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -58,19 +56,18 @@
 </template>
 
 <script>
-import { defineComponent } from '@vue/composition-api'
-import { useNavigationDrawer } from './NavigationDrawer'
+import { defineComponent } from '@vue/composition-api';
+import { useNavigationDrawer } from './NavigationDrawer';
 
 export default defineComponent({
-  name: 'navigation-drawer',
   setup(props, context) {
-    const { items, isOpen, toggleNav } = useNavigationDrawer(context)
+    const { items, isOpen, toggleNav } = useNavigationDrawer(context);
 
     return {
       items,
       isOpen,
       toggleNav,
-    }
+    };
   },
-})
+});
 </script>

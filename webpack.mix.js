@@ -1,4 +1,4 @@
-const mix = require('laravel-mix')
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,5 +13,19 @@ const mix = require('laravel-mix')
 
 mix
   .ts('resources/ts/app.ts', 'public/js')
-  .vue()
+  .vue({ version: 2 })
   .sass('resources/sass/app.scss', 'public/css')
+  .webpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          loader: 'ts-loader',
+          exclude: /node_modules/,
+        },
+      ],
+    },
+    resolve: {
+      extensions: ['*', '.js', '.jsx', '.vue', '.ts', 'tsx'],
+    },
+  });
