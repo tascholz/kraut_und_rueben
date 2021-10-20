@@ -14,7 +14,7 @@ class MainController extends Controller
     public function index()
     {
         $ingredients = Ingredient::all();
-        
+        $recipe = Recipe::all();
         return view('index', [
                                 'ingredients' => $ingredients
                             ]);
@@ -47,5 +47,53 @@ class MainController extends Controller
                 DB::insert('insert into ingredient_recipe (ingredient_id, recipe_id, amount) values (?, ?, ?)', [$ingredientId, $recipeId, $amount]);
         }
         return redirect('/addRecipes');
+    }
+
+    public function calculateNutritionValues(Recipe $recipe){
+        
+        $calorieTotal = 0;
+        $carbonhydratesTotal = 0;
+        $proteinTotal = 0;
+
+        $ingredients = DB::table('ingredient_recipe')
+            ->where('recipe_id', '=', $recipe->id)
+            ->get();
+        foreach($ingredients as $ingredient){
+            $calorieTotal += Ingredient::where('ingredient_id', '=', $ingredient->ingredient_id)->first()->calories;
+            $carbonhydratesTotal += Ingredient::where('ingredient_id', '=', $ingredient->ingredient_id)->first()->carbonhydrates;
+            $proteinTotal += Ingredient::where('ingredient_id', '=', $ingredient->ingredient_id)->first()->protein;
+        }
+        return ['calorieTotal' => $calorieTotal,
+                'carbonhydratesTotal' => $carbonhydratesTotal,
+                'proteinTotal' => $proteinTotal];
+    }
+
+    public function getRecipe($id)
+    {
+        $recipe = Recipe::find($id);
+        $name = $recipe->recipe_name;
+        $description = $recipe->description;
+        $ingredientList = DB::table('ingredient_recipe')
+        ->where('recipe_id', '=', $recipe->id)
+        ->get();
+
+        $ingredients = [];
+        foreach($ingredientList as $ingredient){
+            
+            $ingredient_name = Ingredient::find($ingredient->id)->ingredient_name;
+
+            array_push($ingredients, [
+                'ingredient_name' => $ingredient_name,
+                'ingredient_amount' => $ingredient->amount
+            ]);
+        }
+        $nutritions = $this->calculateNutritionValues($recipe);
+
+        return ['name' => $name,
+                'ingredients' => $ingredients,
+                'description' => $description,
+                'calories' => $nutritions['calorieTotal'],
+                'carbonhydrates' => $nutritions['carbonhydratesTotal'],
+                'protein' => $nutritions['proteinTotal']];
     }
 }
