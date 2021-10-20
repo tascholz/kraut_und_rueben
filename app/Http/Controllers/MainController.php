@@ -80,7 +80,7 @@ class MainController extends Controller
         $ingredients = [];
         foreach($ingredientList as $ingredient){
             
-            $ingredient_name = Ingredient::find($ingredient->id)->ingredient_name;
+            $ingredient_name = Ingredient::where('ingredient_id', $ingredient->ingredient_id)->first()->ingredient_name;
 
             array_push($ingredients, [
                 'ingredient_name' => $ingredient_name,
