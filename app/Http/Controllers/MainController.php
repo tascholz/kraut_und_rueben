@@ -58,14 +58,29 @@ class MainController extends Controller
         $ingredients = DB::table('ingredient_recipe')
             ->where('recipe_id', '=', $recipe->id)
             ->get();
+
         foreach($ingredients as $ingredient){
-            $calorieTotal += Ingredient::where('ingredient_id', '=', $ingredient->ingredient_id)->first()->calories;
-            $carbonhydratesTotal += Ingredient::where('ingredient_id', '=', $ingredient->ingredient_id)->first()->carbonhydrates;
-            $proteinTotal += Ingredient::where('ingredient_id', '=', $ingredient->ingredient_id)->first()->protein;
+            $calorieTotal += Ingredient::where('ingredient_id', '=', $ingredient->ingredient_id)->first()->calories * $ingredient->amount;
+            $carbonhydratesTotal += Ingredient::where('ingredient_id', '=', $ingredient->ingredient_id)->first()->carbonhydrates * $ingredient->amount;
+            $proteinTotal += Ingredient::where('ingredient_id', '=', $ingredient->ingredient_id)->first()->protein * $ingredient->amount;
         }
         return ['calorieTotal' => $calorieTotal,
                 'carbonhydratesTotal' => $carbonhydratesTotal,
                 'proteinTotal' => $proteinTotal];
+    }
+
+    public function calculateRecipePrice(Recipe $recipe){
+
+        $total = 0;
+        $ingredientList = DB::table('ingredient_recipe')
+        ->where('recipe_id', '=', $recipe->id)
+        ->get();
+
+        $ingredients = [];
+        foreach($ingredientList as $ingredient){
+            $total += (Ingredient::where('ingredient_id', $ingredient->ingredient_id)->first()->netto_price * $ingredient->amount);
+        }
+        return $total;
     }
 
     public function getRecipe($id)
@@ -88,12 +103,13 @@ class MainController extends Controller
             ]);
         }
         $nutritions = $this->calculateNutritionValues($recipe);
-
+        $totalPrice = $this->calculateRecipePrice($recipe);
         return ['name' => $name,
                 'ingredients' => $ingredients,
                 'description' => $description,
                 'calories' => $nutritions['calorieTotal'],
                 'carbonhydrates' => $nutritions['carbonhydratesTotal'],
-                'protein' => $nutritions['proteinTotal']];
+                'protein' => $nutritions['proteinTotal'],
+                'price' => $totalPrice];
     }
 }
