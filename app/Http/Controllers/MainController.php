@@ -76,17 +76,18 @@ class MainController extends Controller
         $ingredientList = DB::table('ingredient_recipe')
         ->where('recipe_id', '=', $recipe->id)
         ->get();
-
+        
         $ingredients = [];
         foreach($ingredientList as $ingredient){
-            
-            $ingredient_name = Ingredient::find($ingredient->id)->ingredient_name;
-
+            $ingredient_name = Ingredient::where('ingredient_id', $ingredient->ingredient_id)->first();
+          
             array_push($ingredients, [
                 'ingredient_name' => $ingredient_name,
                 'ingredient_amount' => $ingredient->amount
             ]);
         }
+
+        return $ingredients;
         $nutritions = $this->calculateNutritionValues($recipe);
 
         return ['name' => $name,
