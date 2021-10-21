@@ -650,5 +650,32 @@ class DatabaseSeeder extends Seeder
             'order_id' => 1010,
             'amount' => 15,
         ]);
+
+        //Categories
+        DB::table('categories')->insert([
+            'category_id' => 1,
+            'category_name' => 'Vorspeisen'
+        ]);
+        DB::table('categories')->insert([
+            'category_id' => 2,
+            'category_name' => 'Aufläufe'
+        ]);
+        DB::table('categories')->insert([
+            'category_id' => 3,
+            'category_name' => 'Nudelgerichte'
+        ]);
+        DB::table('categories')->insert([
+            'category_id' => 4,
+            'category_name' => 'Nachspeisen'
+        ]);
+        DB::table('categories')->insert([
+            'category_id' => 5,
+            'category_name' => 'Pfannengerichte'
+        ]);
+        DB::table('categories')->insert([
+            'category_id' => 6,
+            'category_name' => 'Kuchen'
+        ]);
+        
     }
 }
