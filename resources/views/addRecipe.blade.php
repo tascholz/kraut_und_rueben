@@ -21,7 +21,15 @@
         <textarea id='description' id='description' name='description' cols='100' rows='20'></textarea><br>
 
         <label for='duration'>Dauer</label><br>
-        <input type='text' id='duration' name='duration'><br><br>
+        <input type='text' id='duration' name='duration'><br>
+        
+        <label for='category'>Kategorie</label>
+        <select id='category' name='category' size='1'>
+            @foreach ($categories as $category)
+                <option value="{{ $category['category_name'] }}">{{$category['category_name']}}</option>
+            @endforeach
+        </select>
+        <br><br>
         
         <input type='hidden' id = 'ingredients' name='ingredients' value=''>
         
