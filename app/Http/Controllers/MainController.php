@@ -8,13 +8,14 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Customer;
 use App\Models\Recipe;
 use App\Models\Ingredient;
+use App\Models\Category;
 
 class MainController extends Controller
 {
     public function index()
     {
         $ingredients = Ingredient::all();
-        
+        $recipe = Recipe::all();
         return view('index', [
                                 'ingredients' => $ingredients
                             ]);
@@ -23,8 +24,10 @@ class MainController extends Controller
     public function addRecipes()
     {
         $ingredients = Ingredient::all();
+        $categories = Category::all();
         return view('addRecipe', [
-            'ingredients' => $ingredients 
+            'ingredients' => $ingredients,
+            'categories' => $categories 
         ]);
     }
 
@@ -46,6 +49,12 @@ class MainController extends Controller
                 $amount = $ingredientComponent[1];
                 DB::insert('insert into ingredient_recipe (ingredient_id, recipe_id, amount) values (?, ?, ?)', [$ingredientId, $recipeId, $amount]);
         }
+
+        $categoryId = Category::where('category_name', '=', $request->category)->get()->first()->category_id;
+        
+        DB::insert('insert into category_recipe (category_id, recipe_id) values (?, ?)', [$categoryId, $recipeId]);
+
         return redirect('/addRecipes');
     }
+
 }
