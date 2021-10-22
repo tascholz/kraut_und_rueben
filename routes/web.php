@@ -14,5 +14,5 @@ use App\Http\Controllers\MainController;
 |
 */
 
-Route::get('/', [MainController::class, 'index']);
+Route::get('/{any}', [MainController::class, 'index'])->where('any', '.*');
 Route::get('/addRecipes', [MainController::class, 'addRecipes']);

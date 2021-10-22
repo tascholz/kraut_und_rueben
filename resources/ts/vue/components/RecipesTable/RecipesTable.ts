@@ -1,5 +1,6 @@
 import { ref } from '@vue/composition-api';
 import { DataTableHeader } from 'vuetify';
+import { getAllRecipes } from '../../services/recipelist';
 import { Recipe } from '../../types/Recipes';
 
 export function useRecipesTable() {
@@ -26,6 +27,8 @@ export function useRecipesTable() {
       name: `Rezept ${i}`,
     });
   }
+
+  getAllRecipes();
 
   return {
     items,

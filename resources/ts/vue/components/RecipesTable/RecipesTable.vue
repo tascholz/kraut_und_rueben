@@ -5,11 +5,11 @@
     loading-text="Rezepte werden geladen"
     no-data-text="Keine Rezepte gefunden"
     :items="items"
-    :loading="isloading"
+    :loading="isLoading"
     :headers="headers"
   >
     <template #[`item.calories`]="{ item }">
-      {{ item.calories }} Kcal
+      {{ item.calories }} Kcal123
     </template>
   </v-data-table>
 </template>
