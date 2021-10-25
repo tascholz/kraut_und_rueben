@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from './vue/views/Home/Home.vue';
 import Recipes from './vue/views/Recipes/Recipes.vue';
 import NotFound from './vue/views/NotFound/NotFound.vue';
+import Ingredients from './vue/views/Ingredients/Ingredients.vue'
 
 Vue.use(VueRouter);
 
@@ -14,6 +15,10 @@ const routes = [
   {
     path: '/recipes',
     component: Recipes,
+  },
+  {
+    path: '/ingredients',
+    component: Ingredients,
   },
   {
     path: '*',
