@@ -15,7 +15,6 @@ class CreateSuppliersTable extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
-            $table->integer('supplier_id');
             $table->string('supplier_name');
             $table->string('street');
             $table->string('house_number');
