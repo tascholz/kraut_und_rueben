@@ -98,6 +98,7 @@ class RecipeController extends Controller
             $recipe_category = DB::select('select * from categories c left join category_recipe cr on cr.recipe_id = ? where c.id = cr.category_id', [$recipe->id]);
 
             array_push($recipeList, [
+                'id' => $recipe->id,
                 'name' => $recipe->recipe_name,
                 'category' => $recipe_category,
                 'description' => $recipe->description,

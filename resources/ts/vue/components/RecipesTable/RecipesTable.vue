@@ -9,7 +9,12 @@
     :headers="headers"
   >
     <template #[`item.calories`]="{ item }">
-      {{ item.calories }} Kcal123
+      {{ item.calories }} Kcal
+    </template>
+    <template #[`header.addRecipe`]>
+      <v-btn color="success" icon outlined>
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
     </template>
   </v-data-table>
 </template>

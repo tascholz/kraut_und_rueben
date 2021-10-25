@@ -1,4 +1,4 @@
-import { ref } from '@vue/composition-api';
+import { computed, ref, WritableComputedRef } from '@vue/composition-api';
 import { DataTableHeader } from 'vuetify';
 import { getAllRecipes } from '../../services/recipelist';
 import { Recipe } from '../../types/Recipes';
@@ -10,25 +10,18 @@ export function useRecipesTable() {
     { text: 'Id', value: 'id' },
     { text: 'Name', value: 'name' },
     { text: 'Kalorien', value: 'calories' },
+    { text: '', value: 'addRecipe', sortable: false, width: '50px' },
   ]);
 
-  const mock: Recipe = {
-    id: 'mock-1',
-    calories: 150,
-    name: 'AAAAA',
+  const items = ref<Recipe[]>();
+
+  const getItems = async () => {
+    isLoading.value = true;
+    items.value = await getAllRecipes();
+    isLoading.value = false;
   };
 
-  const items = ref<Recipe[]>([]);
-
-  for (var i = 0; i < 100; i++) {
-    items.value.push({
-      id: `mock-${i}`,
-      calories: Math.floor(Math.random() * 1000),
-      name: `Rezept ${i}`,
-    });
-  }
-
-  getAllRecipes();
+  getItems();
 
   return {
     items,
