@@ -15,7 +15,6 @@ class CustomerSeeder extends Seeder
     public function run()
     {
         DB::table('customers')->insert([
-            'customer_id' => 2001,
             'last_name' => 'Wellensteyn',
             'first_name' => 'Kira',
             'birthdate' => '1990-05-05',
@@ -28,7 +27,6 @@ class CustomerSeeder extends Seeder
         ]);
 
         DB::table('customers')->insert([
-            'customer_id' => 2002,
             'last_name' => 'Foede',
             'first_name' => 'Dorothea',
             'birthdate' => '2000-03-24',
@@ -41,7 +39,6 @@ class CustomerSeeder extends Seeder
         ]);
 
         DB::table('customers')->insert([
-            'customer_id' => 2003,
             'last_name' => 'Leberer',
             'first_name' => 'Sigrid',
             'birthdate' => '1989-09-21',
@@ -53,7 +50,6 @@ class CustomerSeeder extends Seeder
             'email' => 'sigrid@leberer.de'
         ]);
         DB::table('customers')->insert([
-            'customer_id' => 2004,
             'last_name' => 'Soerensen',
             'first_name' => 'Hanna',
             'birthdate' => '1974-04-03',
@@ -65,7 +61,6 @@ class CustomerSeeder extends Seeder
             'email' => 'h.soerensen@yahoo.de'
         ]);
         DB::table('customers')->insert([
-            'customer_id' => 2005,
             'last_name' => 'Schnitter',
             'first_name' => 'Marten',
             'birthdate' => '1964-04-17',
@@ -77,7 +72,6 @@ class CustomerSeeder extends Seeder
             'email' => 'schni_mart@gamil.com'
         ]);
         DB::table('customers')->insert([
-            'customer_id' => 2006,
             'last_name' => 'Maurer',
             'first_name' => 'Belinda',
             'birthdate' => '1978-09-09',
@@ -89,7 +83,6 @@ class CustomerSeeder extends Seeder
             'email' => 'belinda1978@zahoo.de'
         ]);
         DB::table('customers')->insert([
-            'customer_id' => 2007,
             'last_name' => 'Gessert',
             'first_name' => 'Armin',
             'birthdate' => '1978-01-29',
@@ -101,7 +94,6 @@ class CustomerSeeder extends Seeder
             'email' => 'armin@gessert.de'
         ]);
         DB::table('customers')->insert([
-            'customer_id' => 2008,
             'last_name' => 'Haessig',
             'first_name' => 'Jean-Marc',
             'birthdate' => '1982-08-30',
@@ -113,7 +105,6 @@ class CustomerSeeder extends Seeder
             'email' => 'jm@haessig.de'
         ]);
         DB::table('customers')->insert([
-            'customer_id' => 2009,
             'last_name' => 'Urocki',
             'first_name' => 'Eric',
             'birthdate' => '1999-12-04',

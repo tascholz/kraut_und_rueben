@@ -20,10 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/addNextRecipe', [MainController::class, 'addNextRecipe']);
+//Recipes
+Route::post('/storeRecipe', [RecipeController::class, 'store']);
 Route::get('/getRecipe{id}', [RecipeController::class, 'getRecipe']);
-Route::post('/updateRecipe{id}', [RecipeController::class, 'updateRecipe']);
-Route::post('/deleteRecipe{id', [RecipeController::class, 'deleteRecipe']);
+Route::post('/updateRecipe{id}', [RecipeController::class, 'update']);
+Route::post('/deleteRecipe{id', [RecipeController::class, 'destroy']);
 Route::get('/recipeList', [RecipeController::class, 'getRecipeList']);
 
-//Route::get('/')
+//

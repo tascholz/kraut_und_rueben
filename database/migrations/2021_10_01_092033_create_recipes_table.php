@@ -19,6 +19,7 @@ class CreateRecipesTable extends Migration
             $table->string('description');
             $table->integer('rating');
             $table->string('duration');
+            $table->integer('category_id');
             $table->timestamps();
         });
     }
