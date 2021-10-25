@@ -15,7 +15,6 @@ class CreateIngredientsTable extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
-            $table->integer('ingredient_id');
             $table->string('ingredient_name');
             $table->string('unit');
             $table->float('netto_price');
