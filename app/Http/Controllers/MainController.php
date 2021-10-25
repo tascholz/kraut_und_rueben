@@ -40,12 +40,13 @@ class MainController extends Controller
         $recipe->duration = $request->duration;
         $recipe->save();
 
+        $recipeId = Recipe::where('recipe_name', $request->name)->first()->id;
+
         $ingredientsList = explode(',', $request->ingredients);
         unset($ingredientsList[0]);
         foreach($ingredientsList as $ingredient){
                 $ingredientComponent = explode(':',$ingredient);                
                 $ingredientId = Ingredient::where('ingredient_name', $ingredientComponent[0])->first()->ingredient_id;
-                $recipeId = Recipe::where('recipe_name', $request->name)->first()->id;
                 $amount = $ingredientComponent[1];
                 DB::insert('insert into ingredient_recipe (ingredient_id, recipe_id, amount) values (?, ?, ?)', [$ingredientId, $recipeId, $amount]);
         }

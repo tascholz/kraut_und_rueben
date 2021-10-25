@@ -95,11 +95,15 @@ class RecipeController extends Controller
 
         foreach ($recipes as $recipe){
 
-            $recipe_category = DB::select('select category_id from category_recipe where recipe_id = ?', [$recipe->recipe_id]);
+            $recipe_category = DB::select('select * from categories c left join category_recipe cr on cr.recipe_id = ? where c.id = cr.category_id', [$recipe->id]);
 
             array_push($recipeList, [
-                'recipe_name' => $recipe->recipe_name,
-                'recipe_category' => $recipe_category
+                'id' => $recipe->id,
+                'name' => $recipe->recipe_name,
+                'category' => $recipe_category,
+                'description' => $recipe->description,
+                'rating' => $recipe->rating,
+                'duration' => $recipe->duration
             ]);
         }
 
