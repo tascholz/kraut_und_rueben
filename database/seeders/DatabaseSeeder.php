@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         //Customer
         DB::table('customers')->insert([
-            'customer_id' => 2001,
             'last_name' => 'Wellensteyn',
             'first_name' => 'Kira',
             'birthdate' => '1990-05-05',
@@ -29,7 +28,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('customers')->insert([
-            'customer_id' => 2002,
             'last_name' => 'Foede',
             'first_name' => 'Dorothea',
             'birthdate' => '2000-03-24',
@@ -42,7 +40,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('customers')->insert([
-            'customer_id' => 2003,
             'last_name' => 'Leberer',
             'first_name' => 'Sigrid',
             'birthdate' => '1989-09-21',
@@ -54,7 +51,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'sigrid@leberer.de'
         ]);
         DB::table('customers')->insert([
-            'customer_id' => 2004,
             'last_name' => 'Soerensen',
             'first_name' => 'Hanna',
             'birthdate' => '1974-04-03',
@@ -66,7 +62,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'h.soerensen@yahoo.de'
         ]);
         DB::table('customers')->insert([
-            'customer_id' => 2005,
             'last_name' => 'Schnitter',
             'first_name' => 'Marten',
             'birthdate' => '1964-04-17',
@@ -78,7 +73,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'schni_mart@gamil.com'
         ]);
         DB::table('customers')->insert([
-            'customer_id' => 2006,
             'last_name' => 'Maurer',
             'first_name' => 'Belinda',
             'birthdate' => '1978-09-09',
@@ -90,7 +84,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'belinda1978@zahoo.de'
         ]);
         DB::table('customers')->insert([
-            'customer_id' => 2007,
             'last_name' => 'Gessert',
             'first_name' => 'Armin',
             'birthdate' => '1978-01-29',
@@ -102,7 +95,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'armin@gessert.de'
         ]);
         DB::table('customers')->insert([
-            'customer_id' => 2008,
             'last_name' => 'Haessig',
             'first_name' => 'Jean-Marc',
             'birthdate' => '1982-08-30',
@@ -114,7 +106,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'jm@haessig.de'
         ]);
         DB::table('customers')->insert([
-            'customer_id' => 2009,
             'last_name' => 'Urocki',
             'first_name' => 'Eric',
             'birthdate' => '1999-12-04',
@@ -128,7 +119,6 @@ class DatabaseSeeder extends Seeder
 
         //Ingredient
         DB::table('ingredients')->insert([
-            'ingredient_id' => 1001,
             'ingredient_name' => 'Zucchini',
             'unit' => 'Stück',
             'netto_price' => 0.89,
@@ -140,7 +130,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 1002,
             'ingredient_name' => 'Zwiebel',
             'unit' => 'Stück',
             'netto_price' => 0.15,
@@ -152,7 +141,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 1003,
             'ingredient_name' => 'Tomate',
             'unit' => 'Stück',
             'netto_price' => 0.45,
@@ -164,7 +152,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 1004,
             'ingredient_name' => 'Schalotte',
             'unit' => 'Stück',
             'netto_price' => 0.20,
@@ -176,7 +163,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 1005,
             'ingredient_name' => 'Karotte',
             'unit' => 'Stück',
             'netto_price' => 0.3,
@@ -188,7 +174,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 1006,
             'ingredient_name' => 'Kartoffel',
             'unit' => 'Stück',
             'netto_price' => 0.15,
@@ -200,7 +185,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 1007,
             'ingredient_name' => 'Rucola',
             'unit' => 'Bund',
             'netto_price' => 0.90,
@@ -212,7 +196,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 1008,
             'ingredient_name' => 'Lauch',
             'unit' => 'Stück',
             'netto_price' => 0.90,
@@ -224,7 +207,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 1009,
             'ingredient_name' => 'Knoblauch',
             'unit' => 'Stück',
             'netto_price' => 0.25,
@@ -236,7 +218,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 1010,
             'ingredient_name' => 'Basilikum',
             'unit' => 'Bund',
             'netto_price' => 1.30,
@@ -248,7 +229,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 1011,
             'ingredient_name' => 'Süßkartoffel',
             'unit' => 'Stück',
             'netto_price' => 2.0,
@@ -260,7 +240,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 1012,
             'ingredient_name' => 'Schnittlauch',
             'unit' => 'Bund',
             'netto_price' => 0.90,
@@ -272,7 +251,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 2001,
             'ingredient_name' => 'Apfel',
             'unit' => 'Stück',
             'netto_price' => 1.20,
@@ -284,7 +262,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 3001,
             'ingredient_name' => 'Vollmilch 3.5%',
             'unit' => 'Liter',
             'netto_price' => 1.5,
@@ -296,7 +273,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 3002,
             'ingredient_name' => 'Mozzarella',
             'unit' => 'Packung',
             'netto_price' => 3.5,
@@ -308,7 +284,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 3003,
             'ingredient_name' => 'Butter',
             'unit' => 'Stück',
             'netto_price' => 3.0,
@@ -320,7 +295,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 4001,
             'ingredient_name' => 'Ei',
             'unit' => 'Stück',
             'netto_price' => 0.40,
@@ -332,7 +306,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 5001,
             'ingredient_name' => 'Wiener Würstchen',
             'unit' => 'Paar',
             'netto_price' => 1.8,
@@ -344,7 +317,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 9001,
             'ingredient_name' => 'Tofu-Würstchen',
             'unit' => 'Stück',
             'netto_price' => 1.8,
@@ -356,7 +328,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 6408,
             'ingredient_name' => 'Couscous',
             'unit' => 'Packung',
             'netto_price' => 1.9,
@@ -368,7 +339,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 7043,
             'ingredient_name' => 'Gemüsebrühe',
             'unit' => 'Würfel',
             'netto_price' => 0.20,
@@ -380,7 +350,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('ingredients')->insert([
-            'ingredient_id' => 6300,
             'ingredient_name' => 'Kichererbsen',
             'unit' => 'Dose',
             'netto_price' => 1.0,
@@ -466,7 +435,6 @@ class DatabaseSeeder extends Seeder
 
         //Supplier
         DB::table('suppliers')->insert([
-            'supplier_id' => 101,
             'supplier_name' => 'Bio-Hof Müller',
             'street' => 'Dorfstraße',
             'house_number' => '74',
@@ -476,7 +444,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'mueller@biohof.de'
         ]);
         DB::table('suppliers')->insert([
-            'supplier_id' => 102,
             'supplier_name' => 'Obst-Hof Altes Land',
             'street' => 'Westerjork',
             'house_number' => '74',
@@ -486,7 +453,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'info@biohof-altesland.de'
         ]);
         DB::table('suppliers')->insert([
-            'supplier_id' => 103,
             'supplier_name' => 'Molkerei Henning',
             'street' => 'Molkereiwegkunde',
             'house_number' => '13',

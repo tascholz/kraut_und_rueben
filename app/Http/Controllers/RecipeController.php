@@ -40,7 +40,26 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $recipe = Recipe::create([
+                                    'recipe_name' => $request->name,
+                                    'description' => $request->description,
+                                    'rating' => $request->rating,
+                                    'duration' => $request->duration,
+                                ]);
+
+        $ingredientList = explode(',', $request->ingredients);
+
+        unset($ingredientList[0]);
+
+        foreach ($ingredientList as $ingredient){
+            $ingredientArray = explode(':', $ingredient);
+
+            $newIngredient = Ingredient::find($ingredientArray[0]);
+            $recipe->ingredients()->attach($newIngredient, ['amount' => $ingredientArray[1]]);        
+        }
+
+        return redirect('/addRecipes');
+
     }
 
     /**
@@ -72,9 +91,32 @@ class RecipeController extends Controller
      * @param  \App\Models\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, recipe $recipe)
+    public function update(Request $request, $id)
     {
         //
+        $recipe = Recipe::find($id);
+        $recipe->update([
+            empty($request->name)? :'recipe_name' => $request->name,
+            empty($request->description)? :'description' => $request->description,
+            empty($request->rating)? :'rating' => $request->rating,
+            empty($request->duration)? :'duration' => $request->duration,
+        ]);
+
+        if (!empty($request->ingredients)){
+            $recipe->ingredients()->detach();
+            
+            $ingredientList = explode(',', $request->ingredients);
+            unset($ingredientList[0]);
+
+            foreach ($ingredientList as $ingredient){
+                $ingredientArray = explode(':', $ingredient);
+
+                $newIngredient = Ingredient::find($ingredientArray[0]);
+                $recipe->ingredients()->attach($newIngredient, ['amount' => $ingredientArray[1]]);        
+            }
+        }
+
+
     }
 
     /**
@@ -83,9 +125,9 @@ class RecipeController extends Controller
      * @param  \App\Models\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(recipe $recipe)
+    public function destroy($id)
     {
-        //
+        Recipe::find($id)->delete();
     }
 
     public function getRecipeList()

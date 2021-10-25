@@ -2,7 +2,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <div>
-    <form method="POST" action="/api/addNextRecipe">
+    <form method="POST" action="/api/storeRecipe">
         @csrf
 
         <label for='name'>Rezeptname</label><br>
@@ -44,7 +44,7 @@
     <div class='newIngredient' id='newIngredient'>
         <select id='formIngredientName' name="formIngredientName" size='1'>
             @foreach ($ingredients as $ingredient)
-                <option value="{{ $ingredient['ingredient_name'] }}">{{$ingredient['ingredient_name']}}</option>
+                <option value="{{ $ingredient['id'] }}">{{$ingredient['ingredient_name']}}</option>
             @endforeach
         
         </select>
@@ -78,17 +78,19 @@
     
     function addIngredient(){
         var element = document.getElementById('formIngredientName');
-        var newName = element.value;
+        var newIngredientId = element.value;
+        var newName = element.options[element.selectedIndex].text;
         var element = document.getElementById('formIngredientCount');
         var newCount = element.value;
         ingredientList.push({
+            ingredientId : newIngredientId,
             name: newName,
             count: newCount
         })
 
         var ingredientString = ''
         ingredientList.forEach(res => {
-            ingredientString = ingredientString + ',' + res.name + ':' + res.count
+            ingredientString = ingredientString + ',' + res.ingredientId + ':' + res.count
         });
         document.getElementById('ingredients').value = ingredientString
         createContainer();
