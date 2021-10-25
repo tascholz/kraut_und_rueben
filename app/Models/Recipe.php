@@ -14,5 +14,5 @@ class Recipe extends Model
         return $this->belongsToMany(Ingredient::class);
     }
 
-    protected $fillable = ['recipe_name', 'description', 'rating', 'duration'];
+    protected $fillable = ['recipe_name', 'description', 'rating', 'duration', 'category_id'];
 }
