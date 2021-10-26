@@ -12,6 +12,16 @@ class Ingredient extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'ingredient_name', 
+        'unit', 
+        'netto_price', 
+        'stock', 
+        'supplier_id', 
+        'calories', 
+        'carbonhydrates', 
+        'protein'];
+
     public function supplier()
     {
         return $this->hasOne(Supplier::class);
