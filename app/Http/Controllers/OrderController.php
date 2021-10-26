@@ -2,31 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\order;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +16,11 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = Order::create([
+            'customer_id' => $request->customer_id,
+            'order_date' => $request->order_date,
+            'total' => $request->total
+        ]);
     }
 
     /**
@@ -44,20 +29,9 @@ class OrderController extends Controller
      * @param  \App\Models\order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(order $order)
+    public function get($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(order $order)
-    {
-        //
+        return Order::find($id);
     }
 
     /**
@@ -67,9 +41,14 @@ class OrderController extends Controller
      * @param  \App\Models\order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, order $order)
+    public function update(Request $request, $id)
     {
-        //
+        $order = Order::find($id);
+        $order->update([
+            'customer_id' => $request->customer_id,
+            'order_date' => $request->order_date,
+            'total' => $request->total
+        ]);
     }
 
     /**
@@ -78,8 +57,8 @@ class OrderController extends Controller
      * @param  \App\Models\order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(order $order)
+    public function destroy($id)
     {
-        //
+        Order::find($id)->delete();
     }
 }

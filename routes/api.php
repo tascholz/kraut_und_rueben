@@ -32,4 +32,15 @@ Route::post('/storeCustomer', [CustomerController::class, 'store']);
 Route::get('/getCustomer{id}', [CustomerController::class, 'get']);
 Route::post('/updateCustomer{id}', [CustomerController::class, 'update']);
 Route::post('/deleteCustomer{id', [CustomerController::class, 'destroy']);
-Route::get('/recipeList', [RecipeController::class, 'getRecipeList']);
+
+//Ingredients
+Route::post('/storeIngredient', [IngredientController::class, 'store']);
+Route::get('/getIngredient{id}', [IngredientController::class, 'get']);
+Route::post('/updateIngredient{id}', [IngredientController::class, 'update']);
+Route::post('/deleteIngredient{id', [IngredientController::class, 'destroy']);
+
+//Order
+Route::post('/storeOrder', [OrderController::class, 'store']);
+Route::get('/getOrder{id}', [OrderController::class, 'get']);
+Route::post('/updateOrder{id}', [OrderController::class, 'update']);
+Route::post('/deleteOrder{id', [OrderController::class, 'destroy']);

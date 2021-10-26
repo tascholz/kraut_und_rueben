@@ -9,6 +9,12 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'customer_id',
+        'order_date',
+        'total'
+    ];
+
     public function customer()
     {
         return $this->hasOne(Customer::class);
