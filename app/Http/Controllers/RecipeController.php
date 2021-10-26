@@ -12,25 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class RecipeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -40,30 +21,26 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $recipe = Recipe::create([
+                                    'recipe_name' => $request->name,
+                                    'description' => $request->description,
+                                    'rating' => $request->rating,
+                                    'duration' => $request->duration,
+                                    'category_id' => $request->category,
+                                ]);
+
+        $ingredientList = explode(',', $request->ingredients);
+
+        unset($ingredientList[0]);
+
+        foreach ($ingredientList as $ingredient){
+            $ingredientArray = explode(':', $ingredient);
+
+            $newIngredient = Ingredient::find($ingredientArray[0]);
+            $recipe->ingredients()->attach($newIngredient, ['amount' => $ingredientArray[1]]);        
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\recipe  $recipe
-     * @return \Illuminate\Http\Response
-     */
-    public function show(recipe $recipe)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\recipe  $recipe
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(recipe $recipe)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -72,9 +49,30 @@ class RecipeController extends Controller
      * @param  \App\Models\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, recipe $recipe)
+    public function update(Request $request, $id)
     {
         //
+        $recipe = Recipe::find($id);
+        $recipe->update([
+            empty($request->name)? :'recipe_name' => $request->name,
+            empty($request->description)? :'description' => $request->description,
+            empty($request->rating)? :'rating' => $request->rating,
+            empty($request->duration)? :'duration' => $request->duration,
+        ]);
+
+        if (!empty($request->ingredients)){
+            $recipe->ingredients()->detach();
+            
+            $ingredientList = explode(',', $request->ingredients);
+            unset($ingredientList[0]);
+
+            foreach ($ingredientList as $ingredient){
+                $ingredientArray = explode(':', $ingredient);
+
+                $newIngredient = Ingredient::find($ingredientArray[0]);
+                $recipe->ingredients()->attach($newIngredient, ['amount' => $ingredientArray[1]]);        
+            }
+        }
     }
 
     /**
@@ -83,9 +81,9 @@ class RecipeController extends Controller
      * @param  \App\Models\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(recipe $recipe)
+    public function destroy($id)
     {
-        //
+        Recipe::find($id)->delete();
     }
 
     public function getRecipeList()
