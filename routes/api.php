@@ -44,3 +44,9 @@ Route::post('/storeOrder', [OrderController::class, 'store']);
 Route::get('/getOrder{id}', [OrderController::class, 'get']);
 Route::post('/updateOrder{id}', [OrderController::class, 'update']);
 Route::post('/deleteOrder{id', [OrderController::class, 'destroy']);
+
+//Supplier
+Route::post('/storeSupplier', [SupplierController::class, 'store']);
+Route::get('/getSupplier{id}', [SupplierController::class, 'get']);
+Route::post('/updateSupplier{id}', [SupplierController::class, 'update']);
+Route::post('/deleteSupplier{id', [SupplierController::class, 'destroy']);
