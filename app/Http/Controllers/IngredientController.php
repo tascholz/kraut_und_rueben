@@ -38,6 +38,11 @@ class IngredientController extends Controller
         return $ingredient = Ingredient::find($id);
     }
 
+    public function getAll()
+    {
+        return Ingredient::all();
+    }
+
     /**
      * Update the specified resource in storage.
      *

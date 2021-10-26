@@ -39,6 +39,10 @@ class SupplierController extends Controller
         return Supplier::find($id);
     }
 
+    public function getAll()
+    {
+        return Supplier::all();
+    }
     /**
      * Update the specified resource in storage.
      *
