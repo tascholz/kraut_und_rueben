@@ -27,4 +27,9 @@ Route::post('/updateRecipe{id}', [RecipeController::class, 'update']);
 Route::post('/deleteRecipe{id', [RecipeController::class, 'destroy']);
 Route::get('/recipeList', [RecipeController::class, 'getRecipeList']);
 
-//
+//Customer
+Route::post('/storeCustomer', [CustomerController::class, 'store']);
+Route::get('/getCustomer{id}', [CustomerController::class, 'get']);
+Route::post('/updateCustomer{id}', [CustomerController::class, 'update']);
+Route::post('/deleteCustomer{id', [CustomerController::class, 'destroy']);
+Route::get('/recipeList', [RecipeController::class, 'getRecipeList']);

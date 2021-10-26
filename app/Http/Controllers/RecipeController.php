@@ -21,7 +21,6 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        echo $request->category;
         $recipe = Recipe::create([
                                     'recipe_name' => $request->name,
                                     'description' => $request->description,
@@ -40,9 +39,6 @@ class RecipeController extends Controller
             $newIngredient = Ingredient::find($ingredientArray[0]);
             $recipe->ingredients()->attach($newIngredient, ['amount' => $ingredientArray[1]]);        
         }
-
-        return redirect('/addRecipes');
-
     }
 
 
