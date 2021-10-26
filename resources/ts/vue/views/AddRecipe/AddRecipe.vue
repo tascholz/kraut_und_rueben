@@ -15,7 +15,7 @@
               label="Name"
             ></v-text-field>
           </v-col>
-          <v-col cols="6">
+          <v-col cols="4" md="4">
             <RatingSelector :value="2" />
           </v-col>
         </v-row>
@@ -24,6 +24,8 @@
           outlined
           label="Beschreibung"
         ></v-textarea>
+        <IngredientSelector :items="allIngredients" />
+        <v-btn text color="primary">Neue Zutat hinzufügen</v-btn>
       </v-form>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -35,15 +37,28 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api';
+import IngredientSelector from '../../components/IngredientSelector/IngredientSelector.vue';
 import RatingSelector from '../../components/RatingSelector/RatingSelector.vue';
 import { useAddRecipe } from './AddRecipe';
 
 export default defineComponent({
-  components: { RatingSelector },
+  components: { RatingSelector, IngredientSelector },
+  metaInfo() {
+    return {
+      titleTemplate: '%s | Kraut und Rüben',
+      title: 'Neues Rezept',
+    };
+  },
   setup() {
-    const { name, time, description, selectedIngredients } = useAddRecipe();
+    const {
+      name,
+      time,
+      description,
+      selectedIngredients,
+      allIngredients,
+    } = useAddRecipe();
 
-    return { name, time, description, selectedIngredients };
+    return { name, time, description, selectedIngredients, allIngredients };
   },
 });
 </script>
@@ -51,7 +66,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .add-recipe {
   &__form {
-    width: 75%;
+    width: 767px;
     margin-left: auto;
     margin-right: auto;
   }

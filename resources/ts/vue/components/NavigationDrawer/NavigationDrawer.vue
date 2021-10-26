@@ -20,7 +20,7 @@
       :permanent="$vuetify.breakpoint.mdAndUp"
       persistent
       app
-      width="300px"
+      width="250px"
       height="100vh"
       v-model="isOpen"
     >
@@ -32,7 +32,7 @@
         </v-list-item-content>
       </v-list-item>
       <v-divider dark></v-divider>
-      <v-list :dense="$vuetify.breakpoint.smAndDown" nav>
+      <v-list dense nav>
         <v-list-item
           v-for="item in items"
           :key="item.name"

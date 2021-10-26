@@ -1,9 +1,9 @@
 <template>
   <v-row>
-    <v-col v-for="index in 5" :key="index" cols="2">
-      <v-btn flat icon color="yellow" @click="setRating(index)">
-        <v-icon v-if="index > rating">mdi-star-outline</v-icon>
-        <v-icon v-else>mdi-star</v-icon>
+    <v-col v-for="index in 5" :key="index" cols="2" md="2">
+      <v-btn text icon color="primary" @click="setRating(index)">
+        <v-icon v-if="index > rating">mdi-checkbox-blank-circle-outline</v-icon>
+        <v-icon v-else>mdi-checkbox-blank-circle</v-icon>
       </v-btn>
     </v-col>
   </v-row>

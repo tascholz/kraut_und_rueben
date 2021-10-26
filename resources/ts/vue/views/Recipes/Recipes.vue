@@ -12,6 +12,12 @@ export default defineComponent({
   components: {
     RecipesTable,
   },
+  metaInfo() {
+    return {
+      titleTemplate: '%s | Kraut und Rüben',
+      title: 'Rezepte',
+    };
+  },
   setup() {
     //
   },

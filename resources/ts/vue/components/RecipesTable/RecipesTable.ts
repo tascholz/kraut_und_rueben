@@ -9,6 +9,8 @@ export function useRecipesTable() {
   const headers = ref<DataTableHeader[]>([
     { text: 'Id', value: 'id' },
     { text: 'Name', value: 'name' },
+    { text: 'Dauer', value: 'duration'},
+    { text: 'Bewertung', value: 'rating' },
     { text: 'Kalorien', value: 'calories' },
     { text: '', value: 'addRecipe', sortable: false, width: '50px' },
   ]);

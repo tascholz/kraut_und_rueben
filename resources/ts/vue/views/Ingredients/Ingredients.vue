@@ -10,6 +10,12 @@ import IngredientsTable from '../../components/IngredientsTable/IngredientsTable
 
 export default defineComponent({
   components: { IngredientsTable },
+  metaInfo() {
+    return {
+      titleTemplate: '%s | Kraut und Rüben',
+      title: 'Zutaten',
+    };
+  },
   setup() {
     //
   },

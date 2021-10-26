@@ -10,8 +10,8 @@
       >
         <v-card-title class="font-weight-regular"></v-card-title>
       </v-app-bar>
-      <v-divider class="mb-4 mt-16"></v-divider>
-      <router-view />
+      <v-divider class="mb-0 mt-16"></v-divider>
+      <router-view :class="{ 'mt-4': $vuetify.breakpoint.mdAndUp}" />
     </v-main>
   </v-app>
 </template>

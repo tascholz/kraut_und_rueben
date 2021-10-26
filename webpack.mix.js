@@ -15,6 +15,7 @@ mix
   .ts('resources/ts/app.ts', 'public/js')
   .vue({ version: 2 })
   .sass('resources/sass/app.scss', 'public/css')
+  .disableNotifications()
   .webpackConfig({
     module: {
       rules: [
