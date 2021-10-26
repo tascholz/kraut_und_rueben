@@ -12,7 +12,7 @@
       {{ item.calories }} Kcal
     </template>
     <template #[`header.addRecipe`]>
-      <v-btn color="success" icon outlined>
+      <v-btn to="/recipes/add" color="success" link icon outlined>
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </template>

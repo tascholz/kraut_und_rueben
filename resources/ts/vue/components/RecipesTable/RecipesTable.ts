@@ -1,6 +1,6 @@
 import { computed, ref, WritableComputedRef } from '@vue/composition-api';
 import { DataTableHeader } from 'vuetify';
-import { getAllRecipes } from '../../services/recipelist';
+import { getAllRecipes } from '../../services/recipes';
 import { Recipe } from '../../types/Recipes';
 
 export function useRecipesTable() {
