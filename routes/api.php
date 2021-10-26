@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
