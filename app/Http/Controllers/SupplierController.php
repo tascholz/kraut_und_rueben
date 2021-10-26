@@ -2,30 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\supplier;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -35,18 +17,15 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\supplier  $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function show(supplier $supplier)
-    {
-        //
+        $supplier = Supplier::create([
+            'supplier_name' => $request->supplier_name,
+            'street' => $request->street,
+            'house_number' => $request->house_number,
+            'postcode' => $request->postcode,
+            'city' => $request->city,
+            'telephone' => $request->telephone,
+            'email' => $request->email
+        ]);
     }
 
     /**
@@ -55,9 +34,9 @@ class SupplierController extends Controller
      * @param  \App\Models\supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(supplier $supplier)
+    public function get($id)
     {
-        //
+        return Supplier::find($id);
     }
 
     /**
@@ -67,9 +46,18 @@ class SupplierController extends Controller
      * @param  \App\Models\supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, supplier $supplier)
+    public function update(Request $request, $id)
     {
-        //
+        $supplier = Supplier::find($id);
+        $supplier->update([
+            'supplier_name' => $request->supplier_name,
+            'street' => $request->street,
+            'house_number' => $request->house_number,
+            'postcode' => $request->postcode,
+            'city' => $request->city,
+            'telephone' => $request->telephone,
+            'email' => $request->email
+        ]);
     }
 
     /**
@@ -78,8 +66,8 @@ class SupplierController extends Controller
      * @param  \App\Models\supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(supplier $supplier)
+    public function destroy($id)
     {
-        //
+        Supplier::find($id)->delete();
     }
 }

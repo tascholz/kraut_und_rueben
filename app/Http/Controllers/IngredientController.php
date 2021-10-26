@@ -2,32 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ingredient;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
 
 class IngredientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
+     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -35,7 +15,16 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ingredient = Ingredient::create([
+                                            'ingredient_name' => $request->name,
+                                            'unit' => $request->unit,
+                                            'netto_price' => $request->netto_price,
+                                            'stock' => $request->stock,
+                                            'supplier_id' => $request->supplier_id,
+                                            'calories' => $request->calories,
+                                            'carbonhydrates' => $request->carbonhydrates,
+                                            'protein' => $request->protein
+                                        ]);
     }
 
     /**
@@ -44,20 +33,9 @@ class IngredientController extends Controller
      * @param  \App\Models\ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function show(ingredient $ingredient)
+    public function get($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ingredient  $ingredient
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ingredient $ingredient)
-    {
-        //
+        return $ingredient = Ingredient::find($id);
     }
 
     /**
@@ -67,9 +45,19 @@ class IngredientController extends Controller
      * @param  \App\Models\ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ingredient $ingredient)
+    public function update(Request $request, $id)
     {
-        //
+        $ingredient = Ingredient::find($id);
+        $ingredient->update([
+            empty($request->name) ? : 'ingredient_name' => $request->name,
+            empty($request->unit) ? : 'unit' => $request->unit,
+            empty($request->netto_price) ? : 'netto_price' => $request->netto_price,
+            empty($request->stock) ? : 'stock' => $request->stock,
+            empty($request->supplier_id) ? : 'supplier_id' => $request->supplier_id,
+            empty($request->calories) ? : 'calories' => $request->calories,
+            empty($request->carbonhydrates) ? : 'carbonhydrates' => $request->carbonhydrates,
+            empty($request->protein) ? : 'protein' => $request->protein
+        ]);
     }
 
     /**
@@ -78,8 +66,8 @@ class IngredientController extends Controller
      * @param  \App\Models\ingredient  $ingredient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ingredient $ingredient)
+    public function destroy($id)
     {
-        //
+        Ingredient::find($id)->delete();
     }
 }

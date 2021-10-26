@@ -2,30 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\customer;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +17,17 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = Customer::create([
+            'last_name' => $request->last_name,
+            'first_name' => $request->first_name,
+            'birthdate' => $request->birthdate,
+            'street' => $request->street,
+            'house_number' => $request->house_number,
+            'postcode' => $request->postcode,
+            'city' => $request->city,
+            'telephone' => $telephone,
+            'email' => $request->email
+        ]);
     }
 
     /**
@@ -44,21 +36,12 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(customer $customer)
+    public function get($id)
     {
-        //
+        return Customer::find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(customer $customer)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -67,9 +50,20 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, customer $customer)
+    public function update(Request $request, $id)
     {
-        //
+        $customer = Customer::find($id);
+        $customer->update([
+            empty($request->last_name) ? :'last_name' => $request->last_name,
+            empty($request->first_name) ? :'first_name' => $request->first_name,
+            empty($request->birthdate) ? :'birthdate' => $request->birthdate,
+            empty($request->street) ? : 'street' => $request->street,
+            empty($request->house_number) ? :'house_number' => $request->house_number,
+            empty($request->postcode) ? :'postcode' => $request->postcode,
+            empty($request->city) ? : 'city' => $request->city,
+            empty($request->telephone) ? :'telephone' => $telephone,
+            empty($request->email) ? : 'email' => $request->email
+        ]);
     }
 
     /**
@@ -78,8 +72,8 @@ class CustomerController extends Controller
      * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(customer $customer)
+    public function destroy($id)
     {
-        //
+        Customer::find($id)->delete();
     }
 }
