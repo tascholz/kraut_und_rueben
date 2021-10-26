@@ -1,5 +1,7 @@
 <template>
-  <v-main> </v-main>
+  <v-main>
+    Die Seite existiert nicht
+  </v-main>
 </template>
 
 <script>

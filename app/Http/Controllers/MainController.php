@@ -31,6 +31,5 @@ class MainController extends Controller
         ]);
     }
 
-    
 
 }

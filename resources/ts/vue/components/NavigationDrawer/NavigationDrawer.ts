@@ -1,18 +1,18 @@
-import { ref } from '@vue/composition-api'
-import { NavigationDrawerItem } from '../../types/NavigationDrawer'
+import { ref } from '@vue/composition-api';
+import { NavigationDrawerItem } from '../../types/NavigationDrawer';
 
 export function useNavigationDrawer() {
-  const isOpen = ref<boolean>(true)
+  const isOpen = ref<boolean>(true);
 
   const toggleNav = () => {
-    isOpen.value = !isOpen.value
-  }
+    isOpen.value = !isOpen.value;
+  };
 
   const items = ref<NavigationDrawerItem[]>([
     {
       name: 'Home',
       icon: 'mdi-home',
-      link: 'to',
+      link: '/',
     },
     {
       name: 'Rezepte',
@@ -22,13 +22,13 @@ export function useNavigationDrawer() {
     {
       name: 'Zutaten',
       icon: 'mdi-food-apple',
-      link: '',
+      link: '/ingredients',
     },
-  ])
+  ]);
 
   return {
     items,
     isOpen,
     toggleNav,
-  }
+  };
 }
