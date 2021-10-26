@@ -27,6 +27,11 @@ class CategoryController extends Controller
         //
     }
 
+    public function getAll()
+    {
+        return Category::all();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

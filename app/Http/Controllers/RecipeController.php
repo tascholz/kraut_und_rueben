@@ -41,6 +41,11 @@ class RecipeController extends Controller
         }
     }
 
+    public function getAll()
+    {
+        return Recipe::all();
+    }
+
 
     /**
      * Update the specified resource in storage.

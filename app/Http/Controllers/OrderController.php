@@ -34,6 +34,11 @@ class OrderController extends Controller
         return Order::find($id);
     }
 
+    public function getAll()
+    {
+        return Order::all();
+    }
+
     /**
      * Update the specified resource in storage.
      *

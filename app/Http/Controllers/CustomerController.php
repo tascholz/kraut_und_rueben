@@ -41,6 +41,10 @@ class CustomerController extends Controller
         return Customer::find($id);
     }
 
+    public function getAll()
+    {
+        return Customer::all();
+    }
     
 
     /**
