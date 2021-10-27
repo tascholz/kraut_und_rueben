@@ -15,6 +15,14 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
+        /**
+         * Like:
+         * INSERT INTO ingredients (
+         *                          ingredient_name,
+         *                          unit...)
+         *              VALUES     ($request->name,
+         *                          $request->unit...)
+         */
         $ingredient = Ingredient::create([
                                             'ingredient_name' => $request->name,
                                             'unit' => $request->unit,
@@ -28,18 +36,31 @@ class IngredientController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Return the specified resource.
      *
-     * @param  \App\Models\ingredient  $ingredient
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function get($id)
     {
+        /**
+         * Like
+         * SELECT * FROM ingredients WHERE id = $id
+         */
         return $ingredient = Ingredient::find($id);
     }
 
+    /**
+     * Return all ingredients
+     * 
+     * @return Ingredient[]
+     */
     public function getAll()
     {
+        /**
+         * Like
+         * SELECT * FROM ingredients
+         */
         return Ingredient::all();
     }
 
@@ -47,11 +68,15 @@ class IngredientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ingredient  $ingredient
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
+        /**
+         * Like
+         * UPDATE ingredients SET ingredient_name = $request->name WHERE id = $id
+         */
         $ingredient = Ingredient::find($id);
         $ingredient->update([
             empty($request->name) ? : 'ingredient_name' => $request->name,
@@ -68,11 +93,15 @@ class IngredientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ingredient  $ingredient
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
+        /**
+         * Like
+         * DELETE FROM ingredients WHERE id = $id
+         */
         Ingredient::find($id)->delete();
     }
 }

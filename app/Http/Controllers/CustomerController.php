@@ -31,9 +31,9 @@ class CustomerController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Returns the specified resource.
      *
-     * @param  \App\Models\customer  $customer
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function get($id)
@@ -41,6 +41,11 @@ class CustomerController extends Controller
         return Customer::find($id);
     }
 
+    /**
+     * returns all customers
+     * 
+     * @return Customer[]
+     */
     public function getAll()
     {
         return Customer::all();
@@ -51,7 +56,7 @@ class CustomerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\customer  $customer
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -73,7 +78,7 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\customer  $customer
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
