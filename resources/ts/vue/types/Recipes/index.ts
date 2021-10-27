@@ -1,3 +1,9 @@
+export interface RecipeIngredient {
+  id?: number;
+  name?: string;
+  amount?: number;
+}
+
 export interface Recipe {
   id: string;
   name: string;
@@ -5,4 +11,5 @@ export interface Recipe {
   duration: string;
   rating: number;
   calories: number;
+  ingredients: RecipeIngredient[];
 }

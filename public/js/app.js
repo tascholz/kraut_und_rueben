@@ -2065,19 +2065,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _vue_composition_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/composition-api */ "./node_modules/@vue/composition-api/dist/vue-composition-api.mjs");
+/* harmony import */ var _vue_composition_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/composition-api */ "./node_modules/@vue/composition-api/dist/vue-composition-api.mjs");
+/* harmony import */ var _IngredientSelector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./IngredientSelector */ "./resources/ts/vue/components/IngredientSelector/IngredientSelector.ts");
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_vue_composition_api__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_vue_composition_api__WEBPACK_IMPORTED_MODULE_1__.defineComponent)({
   props: {
     items: {
       type: Array,
-      required: true
+      required: false
+    },
+    isLast: {
+      type: Boolean,
+      "default": false
     },
     value: {
-      type: String
+      type: Object,
+      "default": null
     }
   },
-  setup: function setup() {//
+  setup: function setup(props, context) {
+    var _a = (0,_IngredientSelector__WEBPACK_IMPORTED_MODULE_0__.useIngredientSelector)(props, context),
+        selected = _a.selected,
+        addIngredient = _a.addIngredient,
+        ingredient = _a.ingredient,
+        amount = _a.amount,
+        showHint = _a.showHint;
+
+    return {
+      showHint: showHint,
+      selected: selected,
+      addIngredient: addIngredient,
+      ingredient: ingredient,
+      amount: amount
+    };
   }
 }));
 
@@ -2202,6 +2223,61 @@ var routes = [{
   routes: routes,
   mode: 'history'
 }));
+
+/***/ }),
+
+/***/ "./resources/ts/vue/components/IngredientSelector/IngredientSelector.ts":
+/*!******************************************************************************!*\
+  !*** ./resources/ts/vue/components/IngredientSelector/IngredientSelector.ts ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useIngredientSelector": () => (/* binding */ useIngredientSelector)
+/* harmony export */ });
+/* harmony import */ var _vue_composition_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vue/composition-api */ "./node_modules/@vue/composition-api/dist/vue-composition-api.mjs");
+
+function useIngredientSelector(props, context) {
+  var _a;
+
+  var ingredient = (0,_vue_composition_api__WEBPACK_IMPORTED_MODULE_0__.ref)();
+  var amount = (0,_vue_composition_api__WEBPACK_IMPORTED_MODULE_0__.ref)(((_a = props.value) === null || _a === void 0 ? void 0 : _a.amount) || 1);
+  var showHint = (0,_vue_composition_api__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+  var selected = (0,_vue_composition_api__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    var _a, _b;
+
+    var item = {
+      id: (_a = ingredient.value) === null || _a === void 0 ? void 0 : _a.id,
+      name: (_b = ingredient.value) === null || _b === void 0 ? void 0 : _b.ingredient_name,
+      amount: amount.value
+    };
+    context.emit('input', item);
+    return item;
+  });
+
+  var addIngredient = function addIngredient() {
+    var _a;
+
+    console.log(selected.value);
+
+    if (((_a = selected.value) === null || _a === void 0 ? void 0 : _a.amount) && selected.value.id && selected.value.name) {
+      showHint.value = false;
+      context.emit('addIngredient', selected.value);
+    } else {
+      showHint.value = true;
+    }
+  };
+
+  return {
+    showHint: showHint,
+    addIngredient: addIngredient,
+    ingredient: ingredient,
+    amount: amount,
+    selected: selected
+  };
+}
 
 /***/ }),
 
@@ -3280,10 +3356,23 @@ function useAddRecipe() {
     });
   };
 
+  var ingredientToRecipeIngredient = function ingredientToRecipeIngredient(ingredient) {
+    return {
+      id: ingredient.id,
+      name: ingredient.ingredient_name
+    };
+  };
+
+  var onIngredientAdded = function onIngredientAdded(value) {
+    selectedIngredients.value.push(value);
+  };
+
   (0,_vue_composition_api__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
     loadIngredients();
   });
   return {
+    onIngredientAdded: onIngredientAdded,
+    ingredientToRecipeIngredient: ingredientToRecipeIngredient,
     name: name,
     time: time,
     description: description,
@@ -3689,6 +3778,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3710,9 +3806,13 @@ __webpack_require__.r(__webpack_exports__);
         time = _useAddRecipe.time,
         description = _useAddRecipe.description,
         selectedIngredients = _useAddRecipe.selectedIngredients,
-        allIngredients = _useAddRecipe.allIngredients;
+        allIngredients = _useAddRecipe.allIngredients,
+        ingredientToRecipeIngredient = _useAddRecipe.ingredientToRecipeIngredient,
+        onIngredientAdded = _useAddRecipe.onIngredientAdded;
 
     return {
+      ingredientToRecipeIngredient: ingredientToRecipeIngredient,
+      onIngredientAdded: onIngredientAdded,
       name: name,
       time: time,
       description: description,
@@ -5780,54 +5880,113 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-row",
+    "div",
     [
       _c(
-        "v-col",
-        { attrs: { cols: "4" } },
-        [
-          _c("v-autocomplete", {
-            attrs: {
-              label: "Zutat",
-              attach: "",
-              outlined: "",
-              dense: "",
-              "single-line": "",
-              items: _vm.items,
-              "no-data-text": "Keine Zutaten gefunden",
-              "item-text": "ingredient_name",
-              "item-value": "id",
-              "menu-props": { bottom: true, offsetY: true }
-            }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-col",
-        { attrs: { cols: "4" } },
-        [
-          _c("v-text-field", {
-            attrs: { outlined: "", dense: "", label: "Anzahl", type: "number" }
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-col",
-        { attrs: { cols: "4" } },
+        "v-row",
+        { attrs: { justify: "start", align: "center" } },
         [
           _c(
-            "v-btn",
-            { attrs: { icon: "", color: "primary" } },
-            [_c("v-icon", [_vm._v("mdi-delete")])],
+            "v-col",
+            { attrs: { cols: "4" } },
+            [
+              _c("v-autocomplete", {
+                ref: "ingredient-dropdown",
+                attrs: {
+                  label: "Zutat",
+                  "return-object": "",
+                  attach: "",
+                  outlined: "",
+                  dense: "",
+                  "single-line": "",
+                  items: _vm.items,
+                  "no-data-text": "Keine Zutaten gefunden",
+                  "item-text": "ingredient_name",
+                  "item-value": "id",
+                  hint: "Pflichtfeld",
+                  "hide-details": !_vm.showHint,
+                  "persistent-hint": _vm.showHint,
+                  "menu-props": { bottom: true, offsetY: true }
+                },
+                model: {
+                  value: _vm.ingredient,
+                  callback: function($$v) {
+                    _vm.ingredient = $$v
+                  },
+                  expression: "ingredient"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "2" } },
+            [
+              _c("v-text-field", {
+                attrs: {
+                  outlined: "",
+                  dense: "",
+                  label: "Anzahl",
+                  hint: "Pflichtfeld",
+                  min: 1,
+                  "persistent-hint": _vm.showHint,
+                  "hide-details": !_vm.showHint,
+                  type: "number"
+                },
+                model: {
+                  value: _vm.amount,
+                  callback: function($$v) {
+                    _vm.amount = $$v
+                  },
+                  expression: "amount"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-col", { attrs: { cols: "2" } }, [
+            _vm.ingredient && _vm.ingredient.unit
+              ? _c("span", [
+                  _vm._v(
+                    "\n        " + _vm._s("" + _vm.ingredient.unit) + "\n      "
+                  )
+                ])
+              : _c("span", [
+                  _vm._v("\n        " + _vm._s("Stück") + "\n      ")
+                ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "4" } },
+            [
+              _c(
+                "v-btn",
+                { attrs: { icon: "", color: "primary" } },
+                [_c("v-icon", [_vm._v("mdi-delete")])],
+                1
+              )
+            ],
             1
           )
         ],
         1
-      )
+      ),
+      _vm._v(" "),
+      _vm.isLast
+        ? _c(
+            "v-btn",
+            {
+              staticClass: "mt-2",
+              attrs: { text: "", color: "primary" },
+              on: { click: _vm.addIngredient }
+            },
+            [_vm._v("Neue Zutat hinzufügen")]
+          )
+        : _vm._e()
     ],
     1
   )
@@ -6307,15 +6466,22 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("IngredientSelector", {
-                attrs: { items: _vm.allIngredients }
+              _vm._l(_vm.selectedIngredients, function(ingredient, index) {
+                return _c("IngredientSelector", {
+                  key: index,
+                  attrs: {
+                    items: _vm.allIngredients,
+                    value: _vm.ingredientToRecipeIngredient(ingredient)
+                  },
+                  on: { addIngredient: _vm.onIngredientAdded }
+                })
               }),
               _vm._v(" "),
-              _c("v-btn", { attrs: { text: "", color: "primary" } }, [
-                _vm._v("Neue Zutat hinzufügen")
-              ])
+              _c("IngredientSelector", {
+                attrs: { items: _vm.allIngredient, isLast: "" }
+              })
             ],
-            1
+            2
           ),
           _vm._v(" "),
           _c(
@@ -71582,7 +71748,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\Patrick\\\\Documents\\\\GitHub\\\\kraut_und_rueben"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\Users\\\\Patrick\\\\Documents\\\\GitHub\\\\kraut_und_rueben","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/","#USER"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"C:\\\\Users\\\\patri\\\\OneDrive\\\\Dokumente\\\\GitHub\\\\kraut_und_rueben","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

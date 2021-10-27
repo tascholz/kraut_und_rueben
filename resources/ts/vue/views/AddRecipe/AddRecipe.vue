@@ -24,8 +24,15 @@
           outlined
           label="Beschreibung"
         ></v-textarea>
-        <IngredientSelector :items="allIngredients" />
-        <v-btn text color="primary">Neue Zutat hinzufügen</v-btn>
+        <IngredientSelector
+          v-for="(ingredient, index) in selectedIngredients"
+          :key="index"
+          :items="allIngredients"
+          :value="ingredientToRecipeIngredient(ingredient)"
+          @addIngredient="onIngredientAdded"
+        >
+        </IngredientSelector>
+        <IngredientSelector :items="allIngredient" isLast />
       </v-form>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -56,9 +63,19 @@ export default defineComponent({
       description,
       selectedIngredients,
       allIngredients,
+      ingredientToRecipeIngredient,
+      onIngredientAdded,
     } = useAddRecipe();
 
-    return { name, time, description, selectedIngredients, allIngredients };
+    return {
+      ingredientToRecipeIngredient,
+      onIngredientAdded,
+      name,
+      time,
+      description,
+      selectedIngredients,
+      allIngredients,
+    };
   },
 });
 </script>

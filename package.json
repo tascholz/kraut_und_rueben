@@ -10,6 +10,7 @@
     "production": "mix --production"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.176",
     "axios": "^0.21.4",
     "bootstrap": "^4.6.0",
     "deepmerge": "^4.2.2",
