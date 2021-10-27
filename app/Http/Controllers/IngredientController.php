@@ -28,9 +28,9 @@ class IngredientController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Return the specified resource.
      *
-     * @param  \App\Models\ingredient  $ingredient
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function get($id)
@@ -38,6 +38,11 @@ class IngredientController extends Controller
         return $ingredient = Ingredient::find($id);
     }
 
+    /**
+     * Return all ingredients
+     * 
+     * @return Ingredient[]
+     */
     public function getAll()
     {
         return Ingredient::all();
@@ -47,7 +52,7 @@ class IngredientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ingredient  $ingredient
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -68,7 +73,7 @@ class IngredientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ingredient  $ingredient
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

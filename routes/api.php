@@ -39,6 +39,13 @@ Route::post('/updateCustomer{id}', [CustomerController::class, 'update']);
 Route::post('/deleteCustomer{id', [CustomerController::class, 'destroy']);
 Route::get('/getAllCustomers', [CustomerController::class, 'getAll']);
 
+//Category
+Route::post('/storeCategory', [CategoryController::class, 'store']);
+Route::get('/getCategory{id}', [CategoryController::class, 'get']);
+Route::post('/updateCategory{id}', [CategoryController::class, 'update']);
+Route::post('/deleteCategory{id', [CategoryController::class, 'destroy']);
+Route::get('/getAllCategories', [CategoryController::class, 'getAll']);
+
 //Ingredients
 Route::post('/storeIngredient', [IngredientController::class, 'store']);
 Route::get('/getIngredient{id}', [IngredientController::class, 'get']);

@@ -24,9 +24,9 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Return the specified resource.
      *
-     * @param  \App\Models\order  $order
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function get($id)
@@ -34,6 +34,11 @@ class OrderController extends Controller
         return Order::find($id);
     }
 
+    /**
+     * Return all orders
+     * 
+     * @return Order[]
+     */
     public function getAll()
     {
         return Order::all();
@@ -43,7 +48,7 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\order  $order
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -59,7 +64,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\order  $order
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

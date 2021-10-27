@@ -29,9 +29,9 @@ class SupplierController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Return the specified ressource
      *
-     * @param  \App\Models\supplier  $supplier
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function get($id)
@@ -39,6 +39,11 @@ class SupplierController extends Controller
         return Supplier::find($id);
     }
 
+    /**
+     * Return all suppliers
+     * 
+     * @return Supplier[]
+     */
     public function getAll()
     {
         return Supplier::all();
@@ -47,7 +52,7 @@ class SupplierController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\supplier  $supplier
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -67,7 +72,7 @@ class SupplierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\supplier  $supplier
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

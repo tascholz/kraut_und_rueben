@@ -41,6 +41,11 @@ class RecipeController extends Controller
         }
     }
 
+    /**
+     * Return all recipes
+     * 
+     * @return Recipe[]
+     */
     public function getAll()
     {
         return Recipe::all();
@@ -51,7 +56,7 @@ class RecipeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\recipe  $recipe
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -83,7 +88,7 @@ class RecipeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\recipe  $recipe
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -91,29 +96,12 @@ class RecipeController extends Controller
         Recipe::find($id)->delete();
     }
 
-    public function getRecipeList()
-    {
-        $recipeList = [];
-        $recipes = Recipe::all();
-
-        foreach ($recipes as $recipe){
-
-            $recipe_category = DB::select('select * from categories c left join category_recipe cr on cr.recipe_id = ? where c.id = cr.category_id', [$recipe->id]);
-
-            array_push($recipeList, [
-                'id' => $recipe->id,
-                'name' => $recipe->recipe_name,
-                'category' => $recipe_category,
-                'description' => $recipe->description,
-                'rating' => $recipe->rating,
-                'duration' => $recipe->duration
-            ]);
-        }
-
-        return $recipeList;
-
-    }
-
+    /**
+     * Calculate the nutrition values
+     * 
+     * @param Recipe $recipe
+     * @return float[]
+     */
     public function calculateNutritionValues(Recipe $recipe){
         
         $calorieTotal = 0;
@@ -134,6 +122,12 @@ class RecipeController extends Controller
                 'proteinTotal' => $proteinTotal];
     }
 
+    /**
+     * Calculate the price
+     * 
+     * @param Recipe $recipe
+     * @return float
+     */
     public function calculateRecipePrice(Recipe $recipe){
 
         $total = 0;
@@ -148,6 +142,12 @@ class RecipeController extends Controller
         return $total;
     }
 
+    /**
+     * Return the selected ressource
+     * 
+     * @param integer $id
+     * @return Recipe
+     */
     public function getRecipe($id)
     {
         $recipe = Recipe::find($id);

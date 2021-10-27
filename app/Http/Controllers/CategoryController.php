@@ -7,26 +7,12 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * fetches all categories
+     * 
+     * @return Category[]
      */
-    public function create()
-    {
-        //
-    }
-
     public function getAll()
     {
         return Category::all();
@@ -44,14 +30,14 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\category  $category
-     * @return \Illuminate\Http\Response
+     * Get Category by id
+     * 
+     * @param integer $id
+     * return \App\Models\Category
      */
-    public function show(Category $category)
+    public function get($id)
     {
-        return $category;
+        return Category::find($id);
     }
 
     /**
