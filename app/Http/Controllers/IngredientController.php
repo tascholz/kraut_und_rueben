@@ -15,6 +15,14 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
+        /**
+         * Like:
+         * INSERT INTO ingredients (
+         *                          ingredient_name,
+         *                          unit...)
+         *              VALUES     ($request->name,
+         *                          $request->unit...)
+         */
         $ingredient = Ingredient::create([
                                             'ingredient_name' => $request->name,
                                             'unit' => $request->unit,
@@ -35,6 +43,10 @@ class IngredientController extends Controller
      */
     public function get($id)
     {
+        /**
+         * Like
+         * SELECT * FROM ingredients WHERE id = $id
+         */
         return $ingredient = Ingredient::find($id);
     }
 
@@ -45,6 +57,10 @@ class IngredientController extends Controller
      */
     public function getAll()
     {
+        /**
+         * Like
+         * SELECT * FROM ingredients
+         */
         return Ingredient::all();
     }
 
@@ -57,6 +73,10 @@ class IngredientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        /**
+         * Like
+         * UPDATE ingredients SET ingredient_name = $request->name WHERE id = $id
+         */
         $ingredient = Ingredient::find($id);
         $ingredient->update([
             empty($request->name) ? : 'ingredient_name' => $request->name,
@@ -78,6 +98,10 @@ class IngredientController extends Controller
      */
     public function destroy($id)
     {
+        /**
+         * Like
+         * DELETE FROM ingredients WHERE id = $id
+         */
         Ingredient::find($id)->delete();
     }
 }
