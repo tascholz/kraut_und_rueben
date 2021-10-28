@@ -25,7 +25,7 @@ class CustomerController extends Controller
             'house_number' => $request->house_number,
             'postcode' => $request->postcode,
             'city' => $request->city,
-            'telephone' => $telephone,
+            'telephone' => $request->telephone,
             'email' => $request->email
         ]);
     }

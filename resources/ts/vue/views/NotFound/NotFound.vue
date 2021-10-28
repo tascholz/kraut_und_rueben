@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-main class="pa-0">
     Die Seite existiert nicht
   </v-main>
 </template>

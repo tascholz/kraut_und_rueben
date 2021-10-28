@@ -30,6 +30,4 @@ class MainController extends Controller
             'categories' => $categories 
         ]);
     }
-
-
 }
