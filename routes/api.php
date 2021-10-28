@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/storeRecipe', [RecipeController::class, 'store']);
 Route::get('/getRecipe{id}', [RecipeController::class, 'getRecipe']);
 Route::post('/updateRecipe{id}', [RecipeController::class, 'update']);
-Route::post('/deleteRecipe{id', [RecipeController::class, 'destroy']);
+Route::post('/deleteRecipe{id}', [RecipeController::class, 'destroy']);
 Route::get('/recipeList', [RecipeController::class, 'getRecipeList']);
 Route::get('/getAllRecipes', [RecipeController::class, 'getAll']);
 
@@ -36,7 +37,7 @@ Route::get('/getAllRecipes', [RecipeController::class, 'getAll']);
 Route::post('/storeCustomer', [CustomerController::class, 'store']);
 Route::get('/getCustomer{id}', [CustomerController::class, 'get']);
 Route::post('/updateCustomer{id}', [CustomerController::class, 'update']);
-Route::post('/deleteCustomer{id', [CustomerController::class, 'destroy']);
+Route::post('/deleteCustomer{id}', [CustomerController::class, 'destroy']);
 Route::get('/getAllCustomers', [CustomerController::class, 'getAll']);
 
 //Category
@@ -50,19 +51,19 @@ Route::get('/getAllCategories', [CategoryController::class, 'getAll']);
 Route::post('/storeIngredient', [IngredientController::class, 'store']);
 Route::get('/getIngredient{id}', [IngredientController::class, 'get']);
 Route::post('/updateIngredient{id}', [IngredientController::class, 'update']);
-Route::post('/deleteIngredient{id', [IngredientController::class, 'destroy']);
+Route::post('/deleteIngredient{id}', [IngredientController::class, 'destroy']);
 Route::get('/getAllIngredients', [IngredientController::class, 'getAll']);
 
 //Order
 Route::post('/storeOrder', [OrderController::class, 'store']);
 Route::get('/getOrder{id}', [OrderController::class, 'get']);
 Route::post('/updateOrder{id}', [OrderController::class, 'update']);
-Route::post('/deleteOrder{id', [OrderController::class, 'destroy']);
+Route::post('/deleteOrder{id}', [OrderController::class, 'destroy']);
 Route::get('/getAllOrders', [OrderController::class, 'getAll']);
 
 //Supplier
 Route::post('/storeSupplier', [SupplierController::class, 'store']);
 Route::get('/getSupplier{id}', [SupplierController::class, 'get']);
 Route::post('/updateSupplier{id}', [SupplierController::class, 'update']);
-Route::post('/deleteSupplier{id', [SupplierController::class, 'destroy']);
+Route::post('/deleteSupplier{id}', [SupplierController::class, 'destroy']);
 Route::get('/getAllSuppliers', [SupplierController::class, 'getAll']);

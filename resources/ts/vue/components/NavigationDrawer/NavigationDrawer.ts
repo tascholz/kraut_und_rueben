@@ -2,7 +2,6 @@ import { ref, SetupContext } from '@vue/composition-api';
 import { NavigationDrawerItem } from '../../types/NavigationDrawer';
 
 export function useNavigationDrawer(context: SetupContext) {
-  
   const isOpen = ref<boolean>(!context.root.$vuetify.breakpoint.smAndDown);
 
   const toggleNav = () => {
@@ -24,6 +23,16 @@ export function useNavigationDrawer(context: SetupContext) {
       name: 'Zutaten',
       icon: 'mdi-food-apple',
       link: '/ingredients',
+    },
+    {
+      name: 'Kunden',
+      icon: 'mdi-account',
+      link: '/customers',
+    },
+    {
+      name: 'Lieferanten',
+      icon: 'mdi-truck',
+      link: '/suppliers',
     },
   ]);
 

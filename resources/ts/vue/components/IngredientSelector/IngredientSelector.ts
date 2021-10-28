@@ -22,8 +22,9 @@ export function useIngredientSelector(
   const selected: ComputedRef<RecipeIngredient | null> = computed(() => {
     const item: RecipeIngredient = {
       id: ingredient.value?.id,
-      name: ingredient.value?.ingredient_name,
+      name: props.value?.name || ingredient.value?.ingredient_name,
       amount: amount.value,
+      unit: ingredient.value?.unit,
     };
 
     context.emit('input', item);
@@ -32,16 +33,22 @@ export function useIngredientSelector(
   });
 
   const addIngredient = () => {
-    console.log(selected.value);
     if (selected.value?.amount && selected.value.id && selected.value.name) {
       showHint.value = false;
       context.emit('addIngredient', selected.value);
+      ingredient.value = null;
+      amount.value = 1;
     } else {
       showHint.value = true;
     }
   };
 
+  const removeIngredient = () => {
+    context.emit('removeIngredient', selected.value);
+  };
+
   return {
+    removeIngredient,
     showHint,
     addIngredient,
     ingredient,

@@ -31,8 +31,6 @@ class RecipeController extends Controller
 
         $ingredientList = explode(',', $request->ingredients);
 
-        unset($ingredientList[0]);
-
         foreach ($ingredientList as $ingredient){
             $ingredientArray = explode(':', $ingredient);
 
@@ -63,18 +61,11 @@ class RecipeController extends Controller
     {
         //
         $recipe = Recipe::find($id);
-        $recipe->update([
-            empty($request->name)? :'recipe_name' => $request->name,
-            empty($request->description)? :'description' => $request->description,
-            empty($request->rating)? :'rating' => $request->rating,
-            empty($request->duration)? :'duration' => $request->duration,
-        ]);
 
         if (!empty($request->ingredients)){
             $recipe->ingredients()->detach();
-            
+
             $ingredientList = explode(',', $request->ingredients);
-            unset($ingredientList[0]);
 
             foreach ($ingredientList as $ingredient){
                 $ingredientArray = explode(':', $ingredient);
@@ -83,6 +74,13 @@ class RecipeController extends Controller
                 $recipe->ingredients()->attach($newIngredient, ['amount' => $ingredientArray[1]]);        
             }
         }
+
+        $recipe->update([
+            empty($request->name)? :'recipe_name' => $request->name,
+            empty($request->description)? :'description' => $request->description,
+            empty($request->rating)? :'rating' => $request->rating,
+            empty($request->duration)? :'duration' => $request->duration,
+        ]);
     }
 
     /**
@@ -113,9 +111,9 @@ class RecipeController extends Controller
             ->get();
 
         foreach($ingredients as $ingredient){
-            $calorieTotal += Ingredient::where('ingredient_id', '=', $ingredient->ingredient_id)->first()->calories * $ingredient->amount;
-            $carbonhydratesTotal += Ingredient::where('ingredient_id', '=', $ingredient->ingredient_id)->first()->carbonhydrates * $ingredient->amount;
-            $proteinTotal += Ingredient::where('ingredient_id', '=', $ingredient->ingredient_id)->first()->protein * $ingredient->amount;
+            $calorieTotal += Ingredient::where('id', '=', $ingredient->ingredient_id)->first()->calories * $ingredient->amount;
+            $carbonhydratesTotal += Ingredient::where('id', '=', $ingredient->ingredient_id)->first()->carbonhydrates * $ingredient->amount;
+            $proteinTotal += Ingredient::where('id', '=', $ingredient->ingredient_id)->first()->protein * $ingredient->amount;
         }
         return ['calorieTotal' => $calorieTotal,
                 'carbonhydratesTotal' => $carbonhydratesTotal,
@@ -137,7 +135,7 @@ class RecipeController extends Controller
 
         $ingredients = [];
         foreach($ingredientList as $ingredient){
-            $total += (Ingredient::where('ingredient_id', $ingredient->ingredient_id)->first()->netto_price * $ingredient->amount);
+            $total += (Ingredient::where('id', $ingredient->ingredient_id)->first()->netto_price * $ingredient->amount);
         }
         return $total;
     }
@@ -153,6 +151,7 @@ class RecipeController extends Controller
         $recipe = Recipe::find($id);
         $name = $recipe->recipe_name;
         $description = $recipe->description;
+        $duration = $recipe->duration;
         $ingredientList = DB::table('ingredient_recipe')
         ->where('recipe_id', '=', $recipe->id)
         ->get();
@@ -160,11 +159,13 @@ class RecipeController extends Controller
         $ingredients = [];
         foreach($ingredientList as $ingredient){
             
-            $ingredient_name = Ingredient::where('ingredient_id', $ingredient->ingredient_id)->first()->ingredient_name;
+            $ingredient_name = Ingredient::where('id', $ingredient->ingredient_id)->first();
 
             array_push($ingredients, [
-                'ingredient_name' => $ingredient_name,
-                'ingredient_amount' => $ingredient->amount
+                'id' => $ingredient->ingredient_id,
+                'ingredient_name' => $ingredient_name->ingredient_name,
+                'ingredient_amount' => $ingredient->amount,
+                'ingredient_unit' => $ingredient_name->unit,
             ]);
         }
         $nutritions = $this->calculateNutritionValues($recipe);
@@ -175,6 +176,9 @@ class RecipeController extends Controller
                 'calories' => $nutritions['calorieTotal'],
                 'carbonhydrates' => $nutritions['carbonhydratesTotal'],
                 'protein' => $nutritions['proteinTotal'],
-                'price' => $totalPrice];
+                'price' => $totalPrice,
+                'duration' => $duration,
+            ];
+                
     }
 }

@@ -26,12 +26,19 @@
     >
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="text-h4 mx-auto text-center">
-            A
+          <v-list-item-title class="text-h6 mb-2 mt-2 mx-auto text-center">
+            <v-row justify="start" align="center">
+              <v-col cols="3" class="pl-2">
+                <v-img src="/img/logo.png" max-height="32" height="32" contain>
+                </v-img>
+              </v-col>
+              <v-col cols="9">
+                Kraut & Rüben
+              </v-col>
+            </v-row>
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <v-divider dark></v-divider>
       <v-list dense nav>
         <v-list-item
           v-for="item in items"

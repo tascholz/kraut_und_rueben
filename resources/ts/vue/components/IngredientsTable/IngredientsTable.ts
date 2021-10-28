@@ -11,6 +11,10 @@ export function useRecipesTable() {
     { text: 'Id', value: 'id' },
     { text: 'Name', value: 'ingredient_name' },
     { text: 'Preis (Netto)', value: 'netto_price' },
+    { text: 'Anzahl', value: 'stock' },
+    { text: 'Kalorien', value: 'calories' },
+    { text: 'Kohlenhydrate', value: 'carbonhydrates' },
+    { text: 'Protein', value: 'protein' },
     { text: '', value: 'addIngredient', sortable: false, width: '50px' },
   ]);
 

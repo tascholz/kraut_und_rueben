@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-row justify="start" align="center">
+    <v-row justify="start" align="start">
       <v-col cols="4">
         <v-autocomplete
           v-model="ingredient"
@@ -16,7 +16,6 @@
           item-text="ingredient_name"
           item-value="id"
           hint="Pflichtfeld"
-          :hide-details="!showHint"
           :persistent-hint="showHint"
           :menu-props="{ bottom: true, offsetY: true }"
         >
@@ -28,15 +27,15 @@
           outlined
           dense
           label="Anzahl"
+          :rules="[v => v % 1 == 0 || 'Es muss eine ganze Zahl sein']"
           hint="Pflichtfeld"
           :min="1"
           :persistent-hint="showHint"
-          :hide-details="!showHint"
           type="number"
         >
         </v-text-field>
       </v-col>
-      <v-col cols="2">
+      <v-col cols="2" class="mt-2">
         <span v-if="ingredient && ingredient.unit">
           {{ `${ingredient.unit}` }}
         </span>
@@ -44,19 +43,14 @@
           {{ `Stück` }}
         </span>
       </v-col>
-      <v-col cols="4">
-        <v-btn icon color="primary">
-          <v-icon>mdi-delete</v-icon>
-        </v-btn>
-      </v-col>
     </v-row>
     <v-btn
       v-if="isLast"
-      class="mt-2"
+      class="mt-0"
       text
       color="primary"
       @click="addIngredient"
-      >Neue Zutat hinzufügen</v-btn
+      >Zutat hinzufügen</v-btn
     >
   </div>
 </template>
@@ -82,8 +76,14 @@ export default defineComponent({
       default: null,
     },
   },
+  watch: {
+    value(newVal, oldVal) {
+      console.log('New Value: ', newVal);
+    },
+  },
   setup(props, context) {
     const {
+      removeIngredient,
       selected,
       addIngredient,
       ingredient,
@@ -92,6 +92,7 @@ export default defineComponent({
     } = useIngredientSelector(props, context);
 
     return {
+      removeIngredient,
       showHint,
       selected,
       addIngredient,
