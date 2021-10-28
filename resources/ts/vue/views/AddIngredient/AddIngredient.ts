@@ -29,6 +29,8 @@ export function useAddIngredient(context: SetupContext) {
     };
 
     createIngredient(ingredient);
+
+    context.root.$router.push({ path: '/ingredients' });
   };
 
   const loadSuppliers = async () => {
