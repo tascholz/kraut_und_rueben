@@ -115,9 +115,9 @@ class RecipeController extends Controller
             $carbonhydratesTotal += Ingredient::where('id', '=', $ingredient->ingredient_id)->first()->carbonhydrates * $ingredient->amount;
             $proteinTotal += Ingredient::where('id', '=', $ingredient->ingredient_id)->first()->protein * $ingredient->amount;
         }
-        return ['calorieTotal' => $calorieTotal,
-                'carbonhydratesTotal' => $carbonhydratesTotal,
-                'proteinTotal' => $proteinTotal];
+        return ['calorieTotal' => round($calorieTotal, 2),
+                'carbonhydratesTotal' => round($carbonhydratesTotal, 2),
+                'proteinTotal' => round($proteinTotal, 2)];
     }
 
     /**
