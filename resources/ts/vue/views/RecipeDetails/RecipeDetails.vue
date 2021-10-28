@@ -53,7 +53,12 @@
           {{ `${recipe.protein}g Eiweiß` }}
         </v-col>
         <v-col cols="2">
-          {{ `${recipe.price.toString().replace('.', ',')} € / Portion` }}
+          {{
+            `${recipe.price
+              .toFixed(2)
+              .toString()
+              .replace('.', ',')}€ Gesamtpreis`
+          }}
         </v-col>
       </v-row>
       <v-row>
