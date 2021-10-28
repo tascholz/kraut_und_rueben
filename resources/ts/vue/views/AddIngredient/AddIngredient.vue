@@ -69,6 +69,15 @@
           </v-row>
           <v-row class="mb-2">
             <v-col cols="4">
+              <v-text-field
+                v-model="amount"
+                outlined
+                dense
+                label="Anzahl"
+                hide-details
+              ></v-text-field>
+            </v-col>
+            <v-col cols="4">
               <v-autocomplete
                 v-model="supplier"
                 outlined
