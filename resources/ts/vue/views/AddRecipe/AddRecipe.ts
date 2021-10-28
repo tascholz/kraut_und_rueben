@@ -51,7 +51,7 @@ export function useAddRecipe(context: SetupContext) {
 
   const onIngredientRemoved = (value: RecipeIngredient) => {
     const i = selectedIngredients.value.indexOf(value);
-    selectedIngredients.value.splice(i);
+    selectedIngredients.value.splice(i, 1);
   };
 
   const onSave = () => {
